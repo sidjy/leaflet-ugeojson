@@ -59,12 +59,11 @@ L.UGeoJSONLayer = L.GeoJSON.extend({
     if ( this.options.usebbox ) {
       postData.append('bbox', bounds.toBBoxString());
     params="&geofilter.polygon=("+bounds.getNorth()+","+bounds.getWest()+"),("+bounds.getNorth()+","+bounds.getEast()+"),("+bounds.getSouth()+","+bounds.getEast()+"),("+bounds.getSouth()+","+bounds.getWest()+")";
-      );
-	    
+    if (this.options.debug) {
+      console.debug("params:"+params);
+    }
 
-var params = "somevariable=somevalue&anothervariable=anothervalue";
 	    
-
     } else {
       postData.append('south', bounds.getSouth());
       postData.append('north', bounds.getNorth());
