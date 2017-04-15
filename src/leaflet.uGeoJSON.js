@@ -58,6 +58,9 @@ L.UGeoJSONLayer = L.GeoJSON.extend({
 
     if ( this.options.usebbox ) {
       postData.append('bbox', bounds.toBBoxString());
+	    postData.append('geofilter.polygon', 
+"("+bounds.getNorth()+","+bounds.getWest()+"),("+bounds.getNorth()+","+bounds.getEast()+"),("+bounds.getSouth()+","+bounds.getEast()+"),("+bounds.getSouth()+","+bounds.getWest()+")"
+      );
 
     } else {
       postData.append('south', bounds.getSouth());
@@ -69,7 +72,7 @@ L.UGeoJSONLayer = L.GeoJSON.extend({
 
     var self = this;
     var request = new XMLHttpRequest();
-    request.open("POST", this.options.endpoint, true);
+    request.open("GET", this.options.endpoint, true);
     request.onload = function() {
       for(var i in self._requests)
       {
