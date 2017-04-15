@@ -89,7 +89,11 @@ L.UGeoJSONLayer = L.GeoJSON.extend({
     };
 
     this._requests.push(request);
-    request.send(postData);
+    request.send(postData); 
+	  if (this.options.debug) {
+      console.debug("sent Data");
+    }
+	  
   },
 
   onAdd: function (map) {
